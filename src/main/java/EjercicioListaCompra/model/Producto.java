@@ -1,10 +1,9 @@
 package EjercicioListaCompra.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+@Entity  //define que es una entidad dentro de una database.
+@Table(name = "productos")  //para poner el nombre de la Tabla. Para que no se ponga como el nombre de la clase, se lo especificamos nosotros.
 public class Producto {
     @Id  //siempre tiene que estar encima del atributo que quieras que sea el id (Primary Key).
     @GeneratedValue(strategy = GenerationType.IDENTITY)  //para que se auto incremente solo.
@@ -12,20 +11,18 @@ public class Producto {
     private int id;
 
     @Column(name = "cantidad")  //para que la columna de la tabla se llame como le digas.
-    private String cantidad;
+    private int cantidad;
 
     @Column(name = "nombre")  //para que la columna de la tabla se llame como le digas.
     private String nombre;
 
 
     //constructor
-    public Producto() {
-    }
-
-    public Producto(String cantidad, String nombre) {
+    public Producto(int cantidad, String nombre) {
         this.cantidad = cantidad;
         this.nombre = nombre;
     }
+
 
     //toString
     @Override
@@ -40,11 +37,11 @@ public class Producto {
     public int getId() {
         return id;
     }
-    public String getCantidad() {
+    public int getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(String cantidad) {
+    public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
 

@@ -32,8 +32,52 @@ Todos el programa ignorará mayúsculas y minúsculas. Se deberá permitir la ej
  */
 package EjercicioListaCompra.gui;
 
+import EjercicioListaCompra.model.Producto;
+import EjercicioListaCompra.pojo.ProductoPojo;
+import EjercicioListaCompra.utils.LeerCSV;
+
+import java.io.File;
+import java.util.Scanner;
+
 public class ExecListaCompra {
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        File f = new File("");
+        ProductoPojo pp = new ProductoPojo();
+        LeerCSV leer = new LeerCSV(f);
+        leer.insertarDatosDelCSV();
+        Producto p = null;
+        String comando = "";
 
+        menu(sc, p, comando, pp);
+    }
+
+    public static void menu(Scanner sc, Producto p, String comando, ProductoPojo pp){
+        int cantidad;
+        String nombre;
+
+        do {
+            System.out.print("Introducir comando: ");
+            String txt = sc.nextLine();
+            String[] trozos = txt.split(" ");
+            comando = trozos[0];
+
+            if (comando.equalsIgnoreCase("listar")){
+                pp.listarTodosLosProductos();
+            } else if (comando.equalsIgnoreCase("usar")){
+                cantidad = Integer.parseInt(trozos[1]);
+                nombre = trozos[2];
+                p = new Producto(cantidad, nombre);
+                pp.restarXProducto(p);
+            } else if (comando.equalsIgnoreCase("hay")) {
+                nombre = trozos[2];
+                pp.mostrarProducto(nombre);
+            } else if (comando.equalsIgnoreCase("adquirir")) {
+                cantidad = Integer.parseInt(trozos[1]);
+                nombre = trozos[2];
+                p = new Producto(cantidad, nombre);
+                pp.addXProducto(p);
+            }
+        } while (comando.equalsIgnoreCase("salir"));
     }
 }
