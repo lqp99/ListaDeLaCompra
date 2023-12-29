@@ -34,16 +34,13 @@ public class Producto {
     }
 
     //getters and setters
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public int getId() {
         return id;
     }
-    public int getCantidad() {
-        return cantidad;
-    }
+
+    public void setId(int id) { this.id = id; }
+
+    public int getCantidad() { return cantidad; }
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
