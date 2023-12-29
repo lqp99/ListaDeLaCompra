@@ -42,7 +42,7 @@ import java.util.Scanner;
 public class ExecListaCompra {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        File f = new File("");
+        File f = new File("src/main/java/EjercicioListaCompra/ficheros/compra.csv");
         ProductoPojo pp = new ProductoPojo();
         LeerCSV leer = new LeerCSV(f);
         leer.insertarDatosDelCSV();

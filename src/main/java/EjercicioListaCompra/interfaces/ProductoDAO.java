@@ -7,11 +7,15 @@ import java.util.List;
 public interface ProductoDAO {
     public List<Producto> listarTodosLosProductos();
 
-    public void restarXProducto(Producto p);
+    public void restarXProducto(Producto producto);
 
     public List<Producto> mostrarProducto(String nombre);
 
-    public void addXProducto(Producto p);
+    public void addXProducto(Producto producto);
+
+    public void actualizarProducto(Producto producto);
+
+    public int getIdPorNombre(Producto producto);
 
 //    public void exitProgram();
 
