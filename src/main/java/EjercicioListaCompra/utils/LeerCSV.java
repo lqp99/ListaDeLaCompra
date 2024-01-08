@@ -17,7 +17,7 @@ public class LeerCSV {
         this.f = f;
     }
 
-
+    //metodos
     public void insertarDatosDelCSV() {
         String linea = "";
         Producto p;
