@@ -40,7 +40,7 @@ public class ProductoPojo implements ProductoDAO {
             tx = session.beginTransaction();
 
             if (producto.getId() != 0){  //si el id es distinto de 0....
-                session.merge(producto);  //actualizamos el producto.
+                session.merge(producto);  //actualizamos el producto con merge.
 
                 if (producto.getCantidad() <= 0) {  //si la cantidad de ese producto es menor o igual a 0, lo eliminamos.
                     session.remove(producto);
