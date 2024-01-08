@@ -17,9 +17,9 @@
         <property name="show_sql">true</property>  <!-- Para que todas las sentencias que se hagan aparezcan en pantalla (como si hicieras un sout) -->
 
         <!-- DDL generation configuration (create, update, validate, none) -->
-            <!-- create: te va a crear las tabals siempre y va a machacar si están creadas -->
+            <!-- create: te va a crear las tablas siempre y va a machacar si están creadas -->
             <!-- update: va a mirar si existen las tablas y si no existen las va a crear -->
-            <!-- validate: va a verifivar que existen y si no existen va a dar un error  -->
+            <!-- validate: va a verificar que existen y si no existen va a dar un error  -->
             <!-- none: no va a hacer nada -->
         <property name="hbm2ddl.auto">update</property>
 
