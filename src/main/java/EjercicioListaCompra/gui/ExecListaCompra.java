@@ -81,3 +81,9 @@ public class ExecListaCompra {
         } while (comando.equalsIgnoreCase("salir"));
     }
 }
+
+/*
+Pruebas para hacer:
+    hay pollo
+    adquirir 1 caldo pollo
+ */
