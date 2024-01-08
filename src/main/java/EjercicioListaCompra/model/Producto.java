@@ -16,13 +16,14 @@ public class Producto {
     @Column(name = "nombre")  //para que la columna de la tabla se llame como le digas.
     private String nombre;
 
-
     //constructor
     public Producto(int cantidad, String nombre) {
         this.cantidad = cantidad;
         this.nombre = nombre;
     }
 
+    public Producto() {  //siempre hay que tener un constructor vacío porque Hibernate lo utiliza aunque ponga que no tiene uso.
+    }
 
     //toString
     @Override
