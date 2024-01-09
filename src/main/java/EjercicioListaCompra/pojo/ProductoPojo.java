@@ -114,6 +114,16 @@ public class ProductoPojo implements ProductoDAO {
         }
     }
 
+    @Override
+    public String getHelp(){
+        return "---Listado de comandos---\n"
+                + "\t listar -> te tiene que devolver un listado de todos los productos que hay.\n"
+                + "\t usar -> para utilizar un producto en concreto.\n"
+                + "\t hay -> te tiene que devolver un listado de los productos que empiezan por el nombre que has puesto. Si metes un espacio y un enter te tienen que salir todos los productos.\n"
+                + "\t adquirir -> para añadir un producto en concreto.\n";
+    }
+
+
 //    @Override
 //    public void exitProgram() {  //salir: finaliza el programa.
 //        System.exit(0);

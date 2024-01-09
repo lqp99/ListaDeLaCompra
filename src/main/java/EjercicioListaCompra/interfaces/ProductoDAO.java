@@ -17,6 +17,8 @@ public interface ProductoDAO {
 
     public int getIdPorNombre(Producto producto);
 
+    public String getHelp();
+
 //    public void exitProgram();
 
 }

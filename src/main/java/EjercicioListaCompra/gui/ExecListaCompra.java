@@ -77,6 +77,8 @@ public class ExecListaCompra {
                 nombre = trozos[2];
                 p = new Producto(cantidad, nombre);
                 pp.addXProducto(p);
+            } else if (comando.equalsIgnoreCase("help")) {
+                pp.getHelp();
             }
         } while (comando.equalsIgnoreCase("salir"));
     }
