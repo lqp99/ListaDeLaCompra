@@ -57,7 +57,7 @@ public class ExecListaCompra {
         String nombre;
 
         do {
-            System.out.print("Introducir comando: ");
+            System.out.print("\nIntroducir comando: ");
             String txt = sc.nextLine();
             String[] trozos = txt.split(" ");
             comando = trozos[0];
@@ -78,9 +78,9 @@ public class ExecListaCompra {
                 p = new Producto(cantidad, nombre);
                 pp.addXProducto(p);
             } else if (comando.equalsIgnoreCase("help")) {
-                pp.getHelp();
+                System.out.println(pp.getHelp());
             }
-        } while (comando.equalsIgnoreCase("salir"));
+        } while (!comando.equalsIgnoreCase("salir"));
     }
 }
 
