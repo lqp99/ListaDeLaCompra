@@ -70,7 +70,7 @@ public class ExecListaCompra {
                 p = new Producto(cantidad, nombre);
                 pp.restarXProducto(p);
             } else if (comando.equalsIgnoreCase("hay")) {
-                nombre = trozos[2];
+                nombre = trozos[1];
                 pp.mostrarProducto(nombre);
             } else if (comando.equalsIgnoreCase("adquirir")) {
                 cantidad = Integer.parseInt(trozos[1]);
@@ -80,7 +80,7 @@ public class ExecListaCompra {
             } else if (comando.equalsIgnoreCase("help")) {
                 System.out.println(pp.getHelp());
             }
-        } while (!comando.equalsIgnoreCase("salir"));
+        } while (!comando.equalsIgnoreCase("exit"));
     }
 }
 
