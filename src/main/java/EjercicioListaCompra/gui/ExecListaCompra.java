@@ -59,7 +59,7 @@ public class ExecListaCompra {
         do {
             System.out.print("\nIntroducir comando: ");
             String txt = sc.nextLine();
-            String[] trozos = txt.split(" ");
+            String[] trozos = txt.split(" ", 3);
             comando = trozos[0];
 
             if (comando.equalsIgnoreCase("listar")){

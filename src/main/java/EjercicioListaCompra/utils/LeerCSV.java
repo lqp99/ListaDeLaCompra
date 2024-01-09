@@ -21,6 +21,7 @@ public class LeerCSV {
     public void insertarDatosDelCSV() {
         String linea = "";
         Producto p;
+        List<Producto> productos;
 
         try (BufferedReader br = new BufferedReader(new FileReader(this.f));) {
             br.readLine();  //para quitar la cabecera del CSV.
@@ -28,11 +29,13 @@ public class LeerCSV {
                 String replaceAll = linea.replaceAll(";", ",").toLowerCase(); //para quitar todos los ";" que aparezcan en la línea y convertimos ttodo en Minúsculas.
                 String[] separarDatos = replaceAll.split(",");
 
+                System.out.println(separarDatos[0] + " " + separarDatos[1]);
+
                 p = new Producto(Integer.parseInt(separarDatos[0]), separarDatos[1]);
 
                 ProductoPojo pp = new ProductoPojo();
 
-                List<Producto> productos = pp.listarTodosLosProductos();  //llamamos al método de listar todos los productos y nos guardamos la Lista que devuelve en una List.
+                productos = pp.listarTodosLosProductos();  //llamamos al método de listar todos los productos y nos guardamos la Lista que devuelve en una List.
 
                 for (Producto producto : productos) {  //nos recorremos la lista de productos que ya existen en la database.
                     if (p.getId() != producto.getId()){  //si el id del producto que queremos añadir es distinto que el producto que nos estamos recorriendo....

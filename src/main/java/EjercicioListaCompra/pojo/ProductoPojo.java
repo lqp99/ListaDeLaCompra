@@ -19,7 +19,7 @@ public class ProductoPojo implements ProductoDAO {
     @Override
     public List<Producto> listarTodosLosProductos() {  //listar: mostrará todos los suministros que nos quedan.
         try (Session session = HibernateUtil.getSessionFactory().openSession()){  //para hacer la conexión con la database.
-            Query<Producto> query = session.createQuery("FROM Producto", Producto.class);  //ponemos "FROM y el nombre de la case" y después se pone la clase a la que nos referimos.
+            Query<Producto> query = session.createQuery("FROM Producto", Producto.class);  //ponemos "FROM y el nombre de la clase" y después se pone la clase a la que nos referimos.
             return query.getResultList();  //devuelve una lista genérica con todos los datos de la tabla. Si se utilzia ".list()" es lo mismo que ".getResultList()".
         } catch(Exception ex) {
             System.err.println(ex);
@@ -90,7 +90,7 @@ public class ProductoPojo implements ProductoDAO {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             tx = session.beginTransaction();
             producto.setId(getIdPorNombre(producto));  //antes de actualizar hay que settear el mismo "id" del producto de la database porque sino lo toma como un producto diferente.
-            session.merge(producto);
+            session.merge(producto);  //esto es como hacer un update para actualizar el producto a la tabla.
             tx.commit();
         } catch (Exception ex) {
             if (tx != null) {
