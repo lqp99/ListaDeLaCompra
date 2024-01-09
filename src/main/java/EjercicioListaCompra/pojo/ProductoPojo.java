@@ -51,7 +51,7 @@ public class ProductoPojo implements ProductoDAO {
             if (tx != null) {  //si la transacción es distinta de null que significa que está abierta y que no se ha completado....
                 tx.rollback();  //esto va a deshacer lo que ha hecho antes y va a volver a como estaba.
             }
-            System.err.println(ex);
+            System.err.println("No se puede coger el producto \"" + producto.getNombre() + "\"");
         }
     }
 
@@ -62,7 +62,7 @@ public class ProductoPojo implements ProductoDAO {
             query.setParameter("valorNombre", nombre);  //cambiamos el ":valor" por el nombre que nos pasan. Hacemos un setParameter por cada valor que queramos cambiar.
             return query.getResultList();  //retorna la query de usuarios en forma de lista.
         } catch (Exception ex) {
-            System.err.println(ex);
+            System.err.println("No se puede mostrar el producto con nombre \"" + nombre + "\"");
             return null;  //si salta una exception devuelve null que es como no devolver nada.
             //también puedes retornar un ArrayList vacío pero luego tienes que controlarlo cuando lo muestres.
         }
@@ -80,7 +80,7 @@ public class ProductoPojo implements ProductoDAO {
             if (tx != null) {  //si la transacción es distinta de null que significa que está abierta y que no se ha completado....
                 tx.rollback();  //esto va a deshacer lo que ha hecho antes y va a volver a como estaba.
             }
-            System.err.println("ERROR: " + ex);
+            System.err.println("ERROR al añadir el producto \"" + producto.getNombre() + "\"");
         }
     }
 
@@ -96,7 +96,7 @@ public class ProductoPojo implements ProductoDAO {
             if (tx != null) {
                 tx.rollback();
             }
-            System.err.println("ERROR Actualizando");
+            System.err.println("ERROR actualizando el producto \"" + producto.getNombre() + "\"");
         }
     }
 
@@ -109,7 +109,7 @@ public class ProductoPojo implements ProductoDAO {
             query.setParameter("valorNombre", nombre);  //cambiamos el ":valor" por el nombre que nos pasan. Hacemos un setParameter por cada valor que queramos cambiar.
             return query.getFirstResult();  //retorna el primer resultado que sale que es un int.
         } catch (Exception ex) {
-            System.err.println(ex);
+            System.err.println("ERROR al obtener el id del producto \"" + producto.getNombre() + "\"");
             return -1;  //si salta una exception devuelve -1 que es como no devolver nada.
         }
     }
