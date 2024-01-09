@@ -24,7 +24,7 @@
         <property name="hbm2ddl.auto">update</property>
 
         <!-- Entity class mapping -->
-        <mapping class="aadTrimestre2.ORM.model.Estudiante" />  <!-- donde le dices que la clase que pones va a ser a partir de la cual se va a crear la tabla -->
+        <mapping class="EjercicioListaCompra.model.Producto" />  <!-- donde le dices que la clase que pones va a ser a partir de la cual se va a crear la tabla -->
     </session-factory>
 </hibernate-configuration>
 
