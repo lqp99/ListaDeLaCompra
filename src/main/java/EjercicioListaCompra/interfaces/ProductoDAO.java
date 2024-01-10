@@ -19,6 +19,8 @@ public interface ProductoDAO {
 
     public String getHelp();
 
+    public List<Producto> getProductByNameCriteria(Producto nombreProducto);
+
 //    public void exitProgram();
 
 }

@@ -3,6 +3,9 @@ package EjercicioListaCompra.pojo;
 import EjercicioListaCompra.interfaces.ProductoDAO;
 import EjercicioListaCompra.model.Producto;
 import EjercicioListaCompra.utils.HibernateUtil;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -122,6 +125,30 @@ public class ProductoPojo implements ProductoDAO {
                 + "\t hay -> te tiene que devolver un listado de los productos que empiezan por el nombre que has puesto. Si metes un espacio y un enter te tienen que salir todos los productos.\n"
                 + "\t adquirir -> para añadir un producto en concreto.\n"
                 + "\t exit -> para salir del programa.\n";
+    }
+
+    @Override
+    public List<Producto> getProductByNameCriteria (Producto nombreProducto) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession();){  //para hacer la conexión con la database.
+            CriteriaBuilder cb = session.getCriteriaBuilder();  //el CriteriaBuilder lo que nos permite es realizar modificaciones sobre el select.
+            CriteriaQuery<Producto> query = cb.createQuery(Producto.class);  //se tiene que poner la clase general, si quieres que devuelva un int, se pone Integer o Long.
+            Root<Producto> rootProduct = query.from(Producto.class);  //se utilza para ver de que clase sacamos la información.
+
+            query.select(rootProduct.get("nombre")).where(cb.equal(rootProduct.get("nombre"), nombreProducto));  //se pone "nombre" que es el nombre de la variable de la clase Producto.
+
+            /*
+            select nombre, cantidad
+            from Productos
+            where nombre like %pa% and amont > 10;
+             */
+            //query.multiselect(rootProduct.get("nombre"), rootProduct.get("cantidad")).where(cb.and(cb.like(rootProduct.get("nombre"), "%" + "%"), cb.greaterThan(rootProduct.get("cantidad"), 10))).groupBy(rootProduct.get("nombre"));
+
+            return session.createQuery(query).getResultList();
+        } catch (Exception ex) {
+            System.err.println(ex);
+            return null;  //si salta una exception devuelve null que es como no devolver nada.
+            //también pudes retornar un ArrayList vacío pero luego tienes que controlarlo cuando lo muestres.
+        }
     }
 
 
