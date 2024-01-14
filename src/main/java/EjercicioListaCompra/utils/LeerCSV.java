@@ -21,7 +21,9 @@ public class LeerCSV {
     public void insertarDatosDelCSV() {
         String linea = "";
         Producto p;
-        List<Producto> productos;
+        ProductoPojo pp = new ProductoPojo();
+        List<Producto> productos = pp.listarTodosLosProductos();  //llamamos al método de listar todos los productos y nos guardamos la Lista que devuelve en una List.
+        List<Producto> productosNuevos = null;
 
         try (BufferedReader br = new BufferedReader(new FileReader(this.f));) {
             br.readLine();  //para quitar la cabecera del CSV.
@@ -32,23 +34,31 @@ public class LeerCSV {
                 System.out.println(separarDatos[0] + " " + separarDatos[1]);
 
                 p = new Producto(Integer.parseInt(separarDatos[0]), separarDatos[1]);
+//                productosNuevos.add(p);
 
-                ProductoPojo pp = new ProductoPojo();
+                int id = pp.getIdPorNombre(p);
+                System.out.println("Id: " + id);
 
-                productos = pp.listarTodosLosProductos();  //llamamos al método de listar todos los productos y nos guardamos la Lista que devuelve en una List.
-
-                for (Producto producto : productos) {  //nos recorremos la lista de productos que ya existen en la database.
-                    if (p.getId() != producto.getId()){  //si el id del producto que queremos añadir es distinto que el producto que nos estamos recorriendo....
-                        pp.addXProducto(p);  //añadimos el poducto llamando al método.
-                        System.out.println("Añadiendo el producto \"" + p.getNombre() + "\" a la database");
-                    } else {  //si son iguales los id entonces....
-                        pp.actualizarProducto(p);  //actualizamos el producto llamando al método.
-                        System.out.println("Actualizando el producto \"" + p.getNombre() + "\"");
-                    }
+                if (id != p.getId()) {
+                    pp.addXProducto(p);  //añadimos el poducto llamando al método.
+                    System.out.println("Añadiendo el producto \"" + p.getNombre() + "\" a la database");
+                } else {
+                    pp.actualizarProducto(p);  //actualizamos el producto llamando al método.
+                    System.out.println("Actualizando el producto \"" + p.getNombre() + "\"");
                 }
+
+//                for (Producto producto : productos) {  //nos recorremos la lista de productos que ya existen en la database.
+//                    if (p.getId() != producto.getId()){  //si el id del producto que queremos añadir es distinto que el producto que nos estamos recorriendo....
+//                        pp.addXProducto(p);  //añadimos el poducto llamando al método.
+//                        System.out.println("Añadiendo el producto \"" + p.getNombre() + "\" a la database");
+//                    } else {  //si son iguales los id entonces....
+//                        pp.actualizarProducto(p);  //actualizamos el producto llamando al método.
+//                        System.out.println("Actualizando el producto \"" + p.getNombre() + "\"");
+//                    }
+//                }
             }
-        } catch(FileNotFoundException ex) {
-            System.err.println("ERROR al leer el fichero CSV \""+ this.f +"\".");
+        } catch (FileNotFoundException ex) {
+            System.err.println("Fichero \""+ this.f +"\" no encontrado.");
         } catch (Exception ex) {
             System.err.println("ERROR: " + ex);
         }
