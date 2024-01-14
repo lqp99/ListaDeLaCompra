@@ -81,6 +81,7 @@ public class ExecListaCompra {
                 System.out.println(pp.getHelp());
             }
         } while (!comando.equalsIgnoreCase("exit"));
+        System.out.println("Saliendo del programa");
     }
 }
 
