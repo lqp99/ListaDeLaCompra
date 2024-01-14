@@ -142,7 +142,7 @@ public class ProductoPojo implements ProductoDAO {
             from Productos
             where nombre like %pa% and amont > 10;
              */
-            //query.multiselect(rootProduct.get("nombre"), rootProduct.get("cantidad")).where(cb.and(cb.like(rootProduct.get("nombre"), "%" + "%"), cb.greaterThan(rootProduct.get("cantidad"), 10))).groupBy(rootProduct.get("nombre"));
+            query.multiselect(rootProduct.get("nombre"), rootProduct.get("cantidad")).where(cb.and(cb.like(rootProduct.get("nombre"), "%" + "%"), cb.greaterThan(rootProduct.get("cantidad"), 10))).groupBy(rootProduct.get("nombre"));
 
             return session.createQuery(query).getResultList();
         } catch (Exception ex) {
