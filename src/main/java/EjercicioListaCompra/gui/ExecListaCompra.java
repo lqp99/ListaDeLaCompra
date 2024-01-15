@@ -37,6 +37,7 @@ import EjercicioListaCompra.pojo.ProductoPojo;
 import EjercicioListaCompra.utils.LeerCSV;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ExecListaCompra {
@@ -44,8 +45,9 @@ public class ExecListaCompra {
         Scanner sc = new Scanner(System.in);
         File f = new File("src/main/java/EjercicioListaCompra/ficheros/compra.csv");
         ProductoPojo pp = new ProductoPojo();
-        LeerCSV leer = new LeerCSV(f);
-        leer.insertarDatosDelCSV();
+        //LeerCSV leer = new LeerCSV(f);
+//        leer.insertarDatosDelCSV();
+        cargarDatosDelCSV(f);
         Producto p = null;
         String comando = "";
 
@@ -82,6 +84,16 @@ public class ExecListaCompra {
             }
         } while (!comando.equalsIgnoreCase("exit"));
         System.out.println("Saliendo del programa");
+    }
+
+    public static void cargarDatosDelCSV(File f) {
+        LeerCSV leer = new LeerCSV(f);
+        ProductoPojo pp = new ProductoPojo();
+        ArrayList<Producto> productos = leer.insertarDatosDelCSV();
+
+        for (Producto p : productos) {
+            pp.addXProducto(p);
+        }
     }
 }
 
